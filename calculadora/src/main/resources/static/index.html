@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Calculadora</title>
+</head>
+<body>
+    <h1>Calculadora Web</h1>
+
+    <input id="a" type="number" placeholder="Número 1">
+    <input id="b" type="number" placeholder="Número 2">
+
+    <br><br>
+
+    <button onclick="calcular('somar')">+</button>
+    <button onclick="calcular('subtrair')">-</button>
+    <button onclick="calcular('multiplicar')">*</button>
+    <button onclick="calcular('dividir')">/</button>
+
+    <h2 id="resultado"></h2>
+
+    <script>
+        function calcular(operacao) {
+            const a = document.getElementById("a").value;
+            const b = document.getElementById("b").value;
+
+            fetch(`/api/calculadora/${operacao}?a=${a}&b=${b}`)
+                .then(res => res.text())
+                .then(data => {
+                    document.getElementById("resultado").innerText = "Resultado: " + data;
+                })
+                .catch(error => {
+                    document.getElementById("resultado").innerText = "Erro";
+                });
+        }
+    </script>
+</body>
+</html>
