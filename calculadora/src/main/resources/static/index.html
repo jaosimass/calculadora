@@ -174,6 +174,29 @@
         }
         updateDisplay();
     }
+
+
+    document.addEventListener("keydown", function(event) {
+
+    if (!isNaN(event.key)) {
+        appendNumber(event.key);
+    }
+
+    if (event.key === ".") {
+        appendNumber(".");
+    }
+
+    if (event.key === "+") setOperator("+");
+    if (event.key === "-") setOperator("-");
+    if (event.key === "*") setOperator("*");
+    if (event.key === "/") setOperator("/");
+
+    if (event.key === "Enter") calculate();
+
+    if (event.key === "Backspace") deleteLast();
+
+    if (event.key === "Escape") clearDisplay();
+});
 </script>
 
 </body>
